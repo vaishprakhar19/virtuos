@@ -47,7 +47,13 @@ app.post('/saveStudent', (req, res) => {
     }
 
     const totalMarks = parseFloat(round1marks) + parseFloat(round2marks) + parseFloat(round3marks) + parseFloat(technicalRoundMarks);
-    const result = totalMarks >= 35 ? 'Selected' : 'Rejected';
+    let result = totalMarks >= 35 ? 'Selected' : 'Rejected';
+    if(round1marks<=6.5||round2marks<=6.5||round3marks<=6.5){
+        result='Rejected'
+    }
+    else{
+        result='Selected'
+    }
     const sql = 'INSERT INTO STUDENTS (student_name,college_name,round1_marks,round2_marks,round3_marks,technical_round_marks,total_marks,result) VALUES(?,?,?,?,?,?,?,?)';
     db.query(sql, [studentName, collegeName, round1marks, round2marks, round3marks, technicalRoundMarks, totalMarks, result], (err, result) => {
         if (err) {
