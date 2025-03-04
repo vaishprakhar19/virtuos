@@ -4,8 +4,8 @@ import axios from 'axios';
 function App() {
 
   const [students, setStudents] = useState([]);
-  const [studentName, setStudentName] = useState(null);
-  const [collegeName, setCollegeName] = useState(null);
+  const [studentName, setStudentName] = useState("");
+  const [collegeName, setCollegeName] = useState("");
   const [round1marks, setRound1marks] = useState(0);
   const [round2marks, setRound2marks] = useState(0);
   const [round3marks, setRound3marks] = useState(0);
@@ -53,12 +53,12 @@ function App() {
       <h2>Student Data</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Student Name" onChange={(e) => { setStudentName(e.target.value) }}></input>
-        <input type="text" placeholder="College Name" onChange={(e) => { setCollegeName(e.target.value) }}></input>
-        <input type="number" placeholder="Round 1 marks" onChange={(e) => { setRound1marks(e.target.value) }}></input>
-        <input type="number" placeholder="Round 2 marks" onChange={(e) => { setRound2marks(e.target.value) }}></input>
-        <input type="number" placeholder="Round 3 marks" onChange={(e) => { setRound3marks(e.target.value) }}></input>
-        <input type="number" placeholder="Technical Round marks" onChange={(e) => { setTechnicalRoundMarks(e.target.value) }}></input>
+        <input type="text" placeholder="Student Name" value={studentName} onChange={(e) => { setStudentName(e.target.value) }}></input>
+        <input type="text" placeholder="College Name" value={collegeName} onChange={(e) => { setCollegeName(e.target.value) }}></input>
+        <input type="number" placeholder="Round 1 marks" value={round1marks} onChange={(e) => { setRound1marks(e.target.value) }}></input>
+        <input type="number" placeholder="Round 2 marks" value={round2marks} onChange={(e) => { setRound2marks(e.target.value) }}></input>
+        <input type="number" placeholder="Round 3 marks" value={round3marks} onChange={(e) => { setRound3marks(e.target.value) }}></input>
+        <input type="number" placeholder="Technical Round marks" value={technicalRoundMarks} onChange={(e) => { setTechnicalRoundMarks(e.target.value) }}></input>
         <button>Submit</button>
       </form>
 

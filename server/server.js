@@ -18,7 +18,7 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
     if (err) {
-        console.err(err.stack);
+        console.error(err.stack);
         return;
     }
     else console.log("connected to database");
@@ -67,17 +67,15 @@ app.get('/getStudents', (req, res) => {
         }
 
         let rank = 1;
-        let count = 1;
         if (results.length > 0) {
-            results[0].Rank = rank;
+            results[0].student_rank = rank;
             for (let i = 1; i < results.length; i++) {
                 if (results[i].total_marks === results[i - 1].total_marks) {
-                    results[i].Rank = rank;
+                    results[i].student_rank = rank;
                 } else {
-                    rank = count + 1;
-                    results[i].Rank = rank;
+                    rank = i + 1; // Rank is based on index
+                    results[i].student_rank = rank;
                 }
-                count++;
             }
         }
         res.json(results);
